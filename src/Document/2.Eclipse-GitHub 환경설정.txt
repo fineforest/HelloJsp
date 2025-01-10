@@ -1,0 +1,260 @@
+════════════════════════════════════════════════════════════════════════════════════
+ <<<Eclipse 환경설정>>>
+	--------------------------------------------------------------------------------
+	 목 차
+	--------------------------------------------------------------------------------
+	 [1] 이클립스 환경설정(필수!)
+	 [2] 이클립스 GitHub Push/Pull 환경설정(선택!)
+════════════════════════════════════════════════════════════════════════════════════
+
+════════════════════════════════════════════════════════════════════════════════════
+ [1] 이클립스 환경설정(필수!)
+════════════════════════════════════════════════════════════════════════════════════
+0. 이클립스 설치버전
+	- 파일 : eclipse-jee-2023-09-R-win32-x86_64.zip
+	
+1. 메뉴
+	- 이클립스 : 해당 내용 참조
+	
+2. 이클립스 폰트 설정
+	- 기능 : 이클립스 개발 환경에 사용되는 기본 폰트 변경
+	- 메뉴 : Preferences/General/Appearance/Colors and Fonts
+		- Basic/Text Editor Block Selection Font : Consolas, Bold, 14
+		- Basic/Text Font : Consolas, Bold, 14
+		- Debug/Console font : Consolas, Bold, 14
+		- Debug/Variable text font : Consolas, Bold, 12
+		- Java/Java Editor Text Font : Consolas, Bold, 16
+		- View and Editor Folders/Part title font : Bold, 10
+		
+3. 이클립스 프로젝트 익스플로러(Project Explorer) 폰트 설정
+	- 기능 : Project Explorer의 폰트 설정을 위해 외부 파일에 내용 추가
+	- 내용 : 각 파일의 가장 아래 부분에 다음을 추가 및 저장하고 이클립스 다시 시작
+	- 폴더 : C:\eclipse\plugins\org.eclipse.ui.themes_1.2.2300.v20230807-1354\css
+	- 파일 : e4_basestyle.css, e4_classic.css
+	- 소스 : 
+			.MPart, .MPart Tree {
+			    font-size: 10;
+			    font-weight: bold;
+			    font-family: 'Consolas';
+			}
+			
+4. 이클립스 에디터 설정
+	- 기능 : 이클립스 텍스트 에디터에 행번호 추가 및 색상 변경
+	- 메뉴 : Preferences/General/Editors/Text Editors
+		- Show line numbers 선택
+		- Appearance color options
+			- Line Number forground 색상 변경
+			
+	- 기능 : 이클립스 텍스트 에디터에 행번호 우측에 소스 변경 사항 반영기능 추가
+	- 메뉴 : Preferences/General/Editors/Text Editors/Accessibility
+		- Use characters to show changes in vertical ruler 선택
+		
+5. 이클립스 워크스페이스 설정
+	- 기능 : 이클립스 시작하는 경우 처음에 보이는 워크스페이스 선택창이 안 보이는 경우 설정
+	- 메뉴 : Preferences/General/Startup and Shutdown/Workspaces
+		- Prompt for workspace on startup 선택
+		
+6. 자바 소스 & 클래스 경로
+	- 기능 : 프로젝트에서 소스 파일을 생성하는 경우 소스의 위치 확인
+	- 메뉴 : Preferences/Java/Build Path
+		- Source and output folder 폴더 확인
+		
+7. 자바 문서 코드 템플릿(중요!)
+	- 기능 : 소스에서 클래스, 변수, 생성자, 함수에 커서를 위치 시키고 단축을 누르면 해당 템플릿이 적용됨
+		- JavaDoc 단축 : Shift + Alt + J
+		- Comments JavaDoc에 적용됨
+	- 내용 : 아래 내용으로 편집
+	- 메뉴 : Preferences/Java/Code Style/Code Templates
+		- Comments 선택 : Types, Fields, Constructor, Method 각각 편집
+	- 소스 : 
+	
+	(1) Types : 클래스 용 주석
+	
+	/***********************************************************************
+	 * Type_Name : Desc<br><br>
+	 * Inheritance : None | Parent_Name<br>
+	 * Member1 : Desc1<br>Member2 : Desc2
+	 ***********************************************************************/
+	
+	(2) Fields : 변수 용 주석
+	
+	/** Field_Name : Desc */
+	
+	(3) Constructor : 생성자 용 주석
+	
+	/***********************************************************************
+	 * Constructor_Name() : 생성자
+	 * @param void : None
+	 ***********************************************************************/
+	
+	(4) Method : 함수 용 주석
+	
+	/***********************************************************************
+	 * Function_Name() : Desc
+	 * @param void : None | Desc
+	 * @return void : None | Desc
+	 ***********************************************************************/
+	
+8. 자바 소스 코드 포멧
+	- 기능 : 소스 코드가 자동완성되는 경우 적용되는 소스 스타일을 개발자 취향에 맞게 변경
+	- 메뉴 : Preferences/Java/Code Style/Formatter
+		- 처음인 경우 : New...  선택
+		- 변경인 경우 : Edit... 선택
+			- 메뉴 : Indentation/Indented elements
+				- Statements within 'switch' body 선택
+			- 메뉴 : Brace positions
+				- 아래 두개는 제외 : Array initializer, Lambda body
+				- 모든 Same line 을 Next line 으로 변경
+				
+9. 자바 소스 색상
+	- 기능 : 소스에서 숫자, 연산자, 문자열에 자동으로 반영되는 색상 변경 
+	- 메뉴 : Preferences/Java/Editor/Syntax Coloring
+		- Element/Java 선택
+			- Numbers	: 자홍
+			- Operators	: 초록
+			- Strings	: 빨강
+		- Element/Comments 선택
+			- Multi-line comment  : 초록, 볼드, 이탤릭 변경
+			- Single-line comment : 초록, 볼드, 이탤릭 변경
+			
+10.자바 설치 경로
+	- 기능 : 이클립스에서 Java-JDK 설치가 정상적으로 인식되었는지 확인
+	- 메뉴 : Java/Installed JREs
+		- 자바 설치 경로 확인
+		
+11.자바 콘솔
+	- 기능 : 이클립스에서 자바 프로그램 실행하는 경우 결과를 출력하는 내부 콘솔창의 버퍼크기 및 탭크기 변경
+	- 메뉴 : Preferences/Run/Debug/Console
+		- Limit console output	: 해제
+		- Displayd tab width	: 4
+		
+12.이클립스 기본 Web 브라우저 설정
+	- 기능 : 이클립스에서 Web 페이지를 테스트하는 경우 Web 브라우저가 정상적으로 호출되는 않을 때 설정
+	- 메뉴 : Preferences/General/Web Browser
+		- 적당한 브라우저 선택
+		
+════════════════════════════════════════════════════════════════════════════════════
+ [2] 이클립스 GitHub Push/Pull 환경설정(선택!)
+════════════════════════════════════════════════════════════════════════════════════
+
+1. GitHub에 이클립스 프로젝트 올리기
+	- 위치 : 이클립스
+	- 기능 : 이클립스에 GitHub용 뷰어 등록하기
+	- 메뉴 : Window / Show view / Other...
+		- Git / Git Repositories 메뉴선택
+		- Git / Git Staging 메뉴선택
+		
+	- 위치 : 이클립스
+	- 기능 : 이클립스 프로젝트를 GitHub와 공유하기
+	- 메뉴 : 프로젝트 마우스(R) / Team / Share Project...
+		- Use or create repository in parent folder of project 체크선택
+		- Create Repository 버튼선택
+			- Git Repositories에 master Branch로 자동 생성됨
+		- Finish 버튼선택
+		
+	- 위치 : 이클립스
+	- 기능 : 이클립스 프로젝트를 GitHub에 올리기 위해 커밋하기
+	- 메뉴 : 프로젝트 마우스(R) / Team / Commit...
+		- Git Staging / Unstaged Changes에 프로젝트 모든 파일이 등록됨
+		
+2. GitHub에 저장소(Repository) 만들기
+	- 위치 : GitHub 사이트
+	- 기능 : 이클립스에서 프로젝트를 GitHub에 올기기 위해 GitHub에 저장소 생성하기
+	- 메뉴 : GitHub 메뉴 참조
+		- 로그인
+		- HelloJsp 명으로 Repository 생성 : Repository 경로 기록필수!
+		- 토큰 생성 : [] 기록필수!
+			- 이클립스에서 Push 하기 위해서 필요(보안강화됨)
+
+3. 이클립스 프로젝트와 GitHub 연결하기
+	- 위치 : 이클립스 / Git Repositories
+	- 기능 : 이클립스 프로젝트를 Github에 올리기 위해 GitHub Push/Pull 환경 설정하기
+	- 메뉴 : Git Repositories / 프로젝트 / Remotes 마우스(R)
+		- Create Remote... 메뉴선택
+		- Create 버튼선택
+		- Change... 버튼선택
+		- URL : https://github.com/fineforest/HelloJsp.git 경로입력
+			- GitHub에서 경로 복사해서 붙여넣기
+		- User : GitHub 계정입력
+		- Password : GitHub에서 생성한 토큰 붙여넣기
+		- Store in Secure Store 체크선택
+		- Finish 버튼선택
+		- Dry-Run 버튼선택
+			- 오류 메시지 없이 창 출력됨
+		- Save 버튼선택
+
+4. 이클립스 프로젝트를 모두 GitHub에 올리기
+	- 위치 : 이클립스 / Git Staging
+	- 기능 : 이클립스 프로젝트를 모두 GitHub에 올리기 위해 Git Staging 사용하기
+	- 메뉴 : Git Staging
+		- Unstaged Changes / + or ++ 툴바선택
+		- Staged Changes 쪽에 프로젝트의 모든 파일이 추가됨
+		- Commit Message : 반드시 커밋 메시지를 입력!
+		- Commit and Push 버튼선택
+		- master -> master [new branch] 메시지 출력됨
+			- Repository https://github.com/fineforest/fineforest.git
+
+			  Resolving deltas:   0% (0/27)
+			  Create a pull request for 'master' on GitHub by visiting:
+					https://github.com/fineforest/fineforest/pull/new/master 메시지 출력됨
+			- 만일 Github에 master Branch가 없다면 GitHub에 master Branch가 생성되면서 올라감
+
+5. GitHub에 Branch 명을 바꾸어서 올리기
+	- 위치 : 이클립스 / Git Repositories
+	- 기능 : GitHub에 등록된 Branch가 main인 경우
+			이클립스에서 자동 생성된 master를 main으로 변경하여 올리기
+	- 메뉴 : Git Repositories / Remotes / origin / Push(아래쪽) 마우스(R)
+		- Configure Push... 메뉴선택
+		- Advenced... 버튼선택
+		- Source ref : refs/heads/master 입력 or 메뉴선택
+		- Destination ref : refs/heads/main 입력 or 메뉴선택
+		- Add Spec 버튼선택
+		- Force Update All 버튼선택
+//		- Save specification in 'origin' configuration 체크선택
+		- Finish 버튼선택
+		- Dry-Run 버튼선택 : 오류 메시지 없이 창 출력됨
+		- Save 버튼선택
+		- Git Repositories / JSP 프로젝트 마우스(R) / Remote / Push... 메뉴선택
+		- Push 버튼선택
+			- master -> main [...] (0) 메시지 출력됨
+			- Repository https://github.com/fineforest/HelloJsp.git 메시지 출력됨
+		- Github에 main Branch 확인
+
+6. Github에서 프로젝트 받아오기
+
+[1] Git Repositories
+	1. Clone Git Repository 링크선택
+	2. Clone URL 메뉴선택
+	3. Next 버튼선택
+	4. URL: https://github.com/fineforest/HelloJsp.git 경로입력
+		-> Github 에서 경로 복사해서 붙여넣기
+	5. Next 버튼선택
+	6. 받아올 Branch 선택
+	7. Next 버튼선택
+	8. Directory: D:\HelloJsp_Git\HelloJsp 경로입력
+	9. Finish 버튼선택
+	10. HelloJsp 프로젝트 생성됨
+
+[2] Eclipse
+	1. File / Open Projects from File System...
+	2. Directory... 버튼선택
+	3. D:\HelloJsp_Git\HelloJsp 폴더선택
+		-> \build, \src 폴더가 보이는 상태
+	4. 폴더선택 버튼선택
+	5. Finish 버튼선택
+	6. HelloJsp [HelloJsp main] 프로젝트 생성됨
+
+[3] Push 테스트
+	1. NewFile.jsp 추가
+	2. Git Staging / Unstaged Changes에 NewFile.jsp 추가됨
+	3. 내용 조금 수정 및 저장
+	4. Unstaged Changes / NewFile.jsp에서 + 툴바선택
+	5. Staged Changes 쪽에 NewFile.jsp 파일 추가됨
+	6. Commit Message: 커밋 메시지 입력
+	3. Commit and Push 버튼선택
+	4. main -> main [...]
+		-> Github에 main Branch 확인
+
+
+
+════════════════════════════════════════════════════════════════════════════════════

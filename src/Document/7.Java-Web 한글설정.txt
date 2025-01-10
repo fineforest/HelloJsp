@@ -1,0 +1,145 @@
+════════════════════════════════════════════════════════════════════════════════════
+ <<<Java-Web 한글설정>>>
+	--------------------------------------------------------------------------------
+	 목 차
+	--------------------------------------------------------------------------------
+	 [1] Java-JDK 설치 후 윈도우 콘솔창 한글 깨는 경우(선택!)
+	 [2] 이클립스 설치 후 Java & Console & Web 한글 코드 설정(필수!)
+	 [3] Apache-Tomcat 설치 후 한글 코드 설정(필수!)
+	 [4] JSP-Page 소스 한글 코드 설정(필수!)
+	 [5] Servlet-Page 소스 한글 코드 설정(필수!)
+════════════════════════════════════════════════════════════════════════════════════
+
+════════════════════════════════════════════════════════════════════════════════════
+ [1] Java-JDK 설치 후 윈도우 콘솔창 한글 깨는 경우(선택!)
+════════════════════════════════════════════════════════════════════════════════════
+1. 콘솔창 한글모드 테스트
+	- C:\>Java <Enter>
+	- 옵션들이 출력 되는데 한글이 깨지는 경우
+	
+2. 콘솔창 한글모드 확인
+	- C:\>chcp <Enter>
+	- 출력 - 활성 코드 페이지: 65001
+	- 이경우 한글 출력이 깨짐
+	
+3. 콘솔창 한글모드 변경
+	- C:\>chcp 949 <Enter>
+	- 출력 - 활성 코드 페이지: 949
+	- 한글모드가 949로 변경됨
+	
+4. 콘솔창 한글모드 테스트 확인
+	- C:\>Java <Enter>
+	- 옵션들이 한글을 포함해서 정상 출력됨
+	
+════════════════════════════════════════════════════════════════════════════════════
+ [2] 이클립스 설치 후 Java & Console & Web 한글 코드 설정(필수!)
+════════════════════════════════════════════════════════════════════════════════════
+0. 이클립스 설치버전
+	- 파일 : eclipse-jee-2023-09-R-win32-x86_64.zip
+	
+1. 메뉴
+	- 이클립스 : 해당 내용 참조
+	
+2. Java 프로젝트 한글 코드 설정
+	- 기능 : 이클립스에서 Java 프로젝트를 생성하면 프로젝트 기본환경에 자동 반영됨
+	- 내용 : Workspace 경로를 새로 추가하는 경우 다시 설정 필요
+	- 메뉴 : Preferences/General/Workspace
+		- Text file encoding - Order : UTF-8 변경
+		
+3. Console 창 한글 폰트 설정
+	- 기능 : 이클립스 내의 콘솔창에 출력 시 한글 깨지는 경우 한글 코드 설정
+	- 메뉴 : 이클립스/Run/Run Configurations.../Java Application/해당 프로젝트명
+		- Common 탭
+		- Encoding
+			- Default로 되어있는 경우 Order 로 변경
+			- MS949 or CP949 입력
+			
+4. Web 프로젝트 한글 코드 설정
+	- 기능 : 이클립스에서 Web 프로젝트에서 페이지를 생성하는 경우에 필요한 기본 한글 코드 설정
+	- 내용 : Workspace 경로를 새로 추가하는 경우 다시 설정 필요
+	- 메뉴 : Preferences/General/Content Types
+		- Java Class File 		- Default Encoding : UTF-8 변경
+		- Text : CSS, HTML, Java Source File, JSP 각각 변경
+			- CSS				- Default Encoding : UTF-8
+			- HTML				- Default Encoding : UTF-8
+			- Java Source File	- Default Encoding : UTF-8
+			- JSP				- Default Encoding : ISO-8859-1 -> UTF-8
+	- 메뉴 : Preferences/Web
+		- Web/CSS Files  : Korean, UTF-8 변경
+		- Web/HTML Files : ISO 10646/Unicode(UTF-8) 변경
+		- Web/JSP Files  : ISO 10646/Unicode(UTF-8) 변경
+		
+════════════════════════════════════════════════════════════════════════════════════
+ [3] Apache-Tomcat 설치 후 한글 코드 설정(필수!)
+════════════════════════════════════════════════════════════════════════════════════
+0. Tomcat 설치버전
+	- 파일 : apache-tomcat-9.0.97-windows-x64.zip
+	
+1. 메뉴
+	- 해당 내용 참조
+	
+2. Apache-Tomcat 설치 후 한글 코드 설정
+	- 기능 : 윈도우 콘솔창에서 수동으로 Tomcat 서비스를 시작한 경우
+			Tomcat 서비스 화면에서 한글 메시지 또는 오류 메시지가
+			깨져서 출력되는 경우 한글 코드 설정
+	- 내용 : 해당 아래 파일을 찾아 아래의 내용으로 변경
+	- 폴더 : 설치버전 - C:\Program Files\Apache Software Foundation\Tomcat 9.0\conf
+			압축버전 - 드라이브:\apache-tomcat-9.0.97\conf
+	- 파일 : server.xml 편집
+	- 소스 : 
+	
+	<server.xml>
+		<Connector	port="8081" protocol="HTTP/1.1"
+					connectionTimeout="20000"
+					redirectPort="8443"
+					maxParameterCount="1000"
+					URLEncoding="UTF-8"/> : 추가
+
+	- 파일 : logging.properties 편집
+	- 소스 :
+	 
+		java.util.logging.ConsoleHandler.encoding = EUC-KR 변경
+		
+════════════════════════════════════════════════════════════════════════════════════
+ [4] JSP-Page 소스 한글 코드 설정(필수!)
+════════════════════════════════════════════════════════════════════════════════════
+0. Tomcat 설치버전
+	- 파일 : apache-tomcat-9.0.97-windows-x64.zip
+	
+1. 메뉴
+	- JSP Page 소스
+	
+2. JSP 페이지 소스 한글 코드 설정
+	- 기능 : JSP 페이지에서 한글 코드가 정상 출력 되도록 설정 
+	- 내용 : JSP 페이지를 생성하고 아래의 내용을 추가
+	- 소스 : 
+	
+	<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+	<% request.setCharacterEncoding("UTF-8"); %>
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<meta charset="UTF-8"/>
+		...
+		
+════════════════════════════════════════════════════════════════════════════════════
+ [5] Servlet-Page 소스 한글 코드 설정(필수!)
+════════════════════════════════════════════════════════════════════════════════════
+0. Tomcat 설치버전
+	- 파일 : apache-tomcat-9.0.97-windows-x64.zip
+	
+1. 메뉴
+	- Servlet Page 소스
+	
+2. Servlet 페이지 한글 코드 설정
+	- 기능 : Servlet 페이지에서 한글 코드가 정상 출력 되도록 설정 
+	- 내용 : Servlet 페이지를 생성하고 한글을 출력하는 해당 함수의 처음 부분에 내용을 추가
+	- 소스 : 
+	
+	...
+	response.setContentType("text/html; charset=UTF-8");	// 출력 할 브라우저 한글 환경
+	response.setCharacterEncoding("UTF-8");					// 출력 할 브라우저 한글 인코딩
+	request.setCharacterEncoding("UTF-8");					// 입력 된 파라미터 한글 인코딩
+	...
+	
+════════════════════════════════════════════════════════════════════════════════════

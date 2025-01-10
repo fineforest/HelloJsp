@@ -1,0 +1,100 @@
+@charset "UTF-8";
+/* -----------------------------------------------------------------
+	HTML Page 스타일시트
+   ----------------------------------------------------------------- */
+.Body {
+	padding: 30px;
+}
+
+.Line {
+	border: 1px solid black;
+	box-shadow: 5px 5px 10px gray;
+}
+
+.Title {
+	color: black;
+	font-size: 24px; font-weight: bold;
+	text-align: center; text-shadow: 5px 5px 10px darkgray;
+}
+
+.Label {
+	color: teal;
+	cursor: pointer;
+	font-size: 16px; font-weight: bold;
+}
+
+.Data {
+	font-size: 16px; font-weight: bold;
+	width: 250px;
+}
+
+.ContentEditor {
+	border: 1px solid gray;
+	color: black;
+	font-size: 16px; font-weight: bold;
+	line-height: 24px;
+	min-height: 240px;
+	padding: 10px;
+	width: auto;
+}
+
+.Content {
+	color: black;
+	height: 240px;
+	font-size: 16px; font-weight: bold;
+	line-height: 24px;
+}
+
+.Table {
+	border-collapse: collapse;
+	margin: 0;
+	width: 100%;
+}
+
+.TableHead {
+	border-bottom: 1px solid darkgray;
+	color: maroon;
+	font-size: 20px; font-weight: bold;
+	height: 50px;
+	text-shadow: 5px 5px 10px darkgray;
+}
+
+.TableRow {
+	border-bottom: 1px solid darkgray;
+	color: black;
+	font-size: 18px; font-weight: bold;
+	height: 35px;
+}
+
+.TableCol {
+	border-bottom: 1px solid darkgray;
+	color: teal;
+	font-size: 18px; font-weight: bold;
+	height: 35px;
+	text-align: center;
+	width: 150px;
+}
+
+.Essential {
+	color: red;
+}
+
+.Image {
+	border: 1px solid darkgray;
+	box-shadow: 5px 5px 10px gray;
+	height: 10px;
+	padding:3px;
+	width: 10px;
+}
+
+.Submit {
+	cursor: pointer;
+	font-size: 16px; font-weight: bold;
+}
+
+.Link {
+	color: darkorange;
+	font-size: 16px; font-weight: bold;
+	text-align: center; text-decoration: none; text-shadow: 5px 5px 10px darkgray;
+}
+/* ----------------------------------------------------------------- */

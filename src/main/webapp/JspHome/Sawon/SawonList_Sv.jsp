@@ -1,0 +1,360 @@
+<%@page import="ServletHome.Sawon.ServletSawon"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="org.apache.naming.java.javaURLContextFactory"%>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<% request.setCharacterEncoding("UTF-8");%>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<%----------------------------------------------------------------------
+	[HTML Page - 헤드 영역]
+	--------------------------------------------------------------------------%>
+	<%--<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">--%>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+	<meta http-equiv="Expires" content="0"/>
+	<meta http-equiv="pragma" content="no-cache"/>
+    <meta name="Description" content="검색 엔진을 위해 웹 페이지에 대한 설명을 명시"/>
+    <meta name="keywords" content="검색 엔진을 위해 웹 페이지와 관련된 키워드 목록을 콤마로 구분해서 명시"/>
+    <meta name="Author" content="문서의 저자를 명시"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>JSP-SAWON-USESERVLET-RS Page</title>
+	<%----------------------------------------------------------------------
+	[HTML Page - 스타일쉬트 구현 영역]
+	[외부 스타일쉬트 연결 : <link rel="stylesheet" href="Hello.css?version=1.1"/>]
+	--------------------------------------------------------------------------%>
+	<link rel="stylesheet" href="CSS/SawonList.css?version=1.2"/>
+	<style type="text/css">
+		/* -----------------------------------------------------------------
+			HTML Page 스타일시트
+		   ----------------------------------------------------------------- */
+		
+        /* ----------------------------------------------------------------- */
+	</style>
+	<%----------------------------------------------------------------------
+	[HTML Page - 자바스크립트 구현 영역(상단)]
+	[외부 자바스크립트 연결(각각) : <script type="text/javascript" src="Hello.js"></script>]
+	--------------------------------------------------------------------------%>
+	<script type="text/javascript">
+		// -----------------------------------------------------------------
+		// [브라우저 갱신 완료 시 호출 할 이벤트 핸들러 연결 - 필수]
+		// -----------------------------------------------------------------
+		// window.onload = function () { DocumentInit('페이지가 모두 로드되었습니다!'); }
+		// window.addEventListener('load', DocumentInit('페이지가 모두 로드되었습니다!'));
+		// window.addEventListener('load', DocumentInit);
+		// -----------------------------------------------------------------
+		// [브라우저 갱신 완료 및 초기화 구현 함수 - 필수]
+		// -----------------------------------------------------------------
+		// 브라우저 갱신 완료 까지 기다리는 함수 - 필수
+		// 일반적인 방식 : setTimeout(()=>alert('페이지가 모두 로드되었습니다!'), 50);
+		function DocumentInit(Msg)
+		{
+			requestAnimationFrame(function() {
+				requestAnimationFrame(function() {
+					alert(Msg);
+				});
+			});
+        }
+		// -----------------------------------------------------------------
+		// [사용자 함수 및 로직 구현]
+		// -----------------------------------------------------------------
+		// Submit 버튼에 검색한 사원정보 수를 출력
+		function PrintRowCount(Button, Text)
+		{
+			btn = document.getElementById(Button);
+			
+			btn.value = Text;
+		}
+		// -----------------------------------------------------------------
+	</script>
+</head>
+<%--------------------------------------------------------------------------
+[JSP 전역 변수/함수 선언 영역 - 선언문 영역]
+	- this 로 접근 가능 : 같은 페이지가 여러번 갱신 되더라도 변수/함수 유지 됨
+	- 즉 현재 페이지가 여러번 갱신 되는 경우 선언문은 한번만 실행 됨
+------------------------------------------------------------------------------%>
+<%!
+	// ---------------------------------------------------------------------
+	// [JSP 전역 변수/함수 선언]
+	// ---------------------------------------------------------------------
+	public String[] DeptInfo = { "영업부[01]", "회계부[02]", "구매부[03]",
+		   						 "자재부[04]", "총무부[05]", "생산부[06]",
+		   						 "원가부[07]" };
+
+	public String[] SawonHead = { "사원", "성명", "나이", "성별", "전화", "부서", "부서명",
+								  "직급", "직급명", "생일", "주소" };
+	// ---------------------------------------------------------------------
+%>
+<%--------------------------------------------------------------------------
+[JSP 지역 변수 선언 및 로직 구현 영역 - 스크립트릿 영역]
+	- this 로 접근 불가 : 같은 페이지가 여러번 갱신되면 변수/함수 유지 안 됨
+	- 즉 현재 페이지가 여러번 갱신 될 때마다 스크립트릿 영역이 다시 실행되어 모두 초기화 됨
+------------------------------------------------------------------------------%>
+<%
+	// ---------------------------------------------------------------------
+	// [JSP 지역 변수 선언 : 웹 페이지 get/post 파라미터]
+	// ---------------------------------------------------------------------
+	String sAge = null;
+	String sGender = null;
+	String sDept = null;
+	// ---------------------------------------------------------------------
+	// [JSP 지역 변수 선언 : 데이터베이스 파라미터]
+	// ---------------------------------------------------------------------
+	
+	// ---------------------------------------------------------------------
+	// [JSP 지역 변수 선언 : 일반 변수]
+	// ---------------------------------------------------------------------
+	String sGenderName = null;								// 성별명
+	String[] oDept = null;									// 부서명/부서코드 분리용
+	String sSelected = null;								// 직급 콤보박스 유지용
+	
+	int nRowCount = 0;										// 사원정보 검색 레코드 수
+	// ---------------------------------------------------------------------
+	// [웹 페이지 get/post 파라미터 조건 필터링]
+	// ---------------------------------------------------------------------
+	sAge = request.getParameter("age");						// 나이 파라미터 읽기
+	sAge = (sAge != null) ? sAge : "0";						// 나이 null 확인(0 : 전체)
+	sAge = (sAge.trim().length() > 0) ? sAge : "0";			// 나이 길이 확인(0 : 전체)
+	
+	sGender = request.getParameter("gender");				// 성별 파라미터 읽기
+	sGender = (sGender != null) ? sGender : "-1";			// 성별 null 확인(-1 : 전체)
+	
+	sDept = request.getParameter("dept");					// 부서 파라미터 읽기
+	sDept = (sDept != null) ? sDept : "-1";					// 부서 null 확인(-1 : 전체)
+	// ---------------------------------------------------------------------
+	// [일반 변수 조건 필터링]
+	// ---------------------------------------------------------------------
+	
+	// ---------------------------------------------------------------------
+%>
+<%--------------------------------------------------------------------------
+[Beans/DTO 선언 및 속성 지정 영역]
+------------------------------------------------------------------------------%>
+	<%----------------------------------------------------------------------
+	Beans 객체 사용 선언	: id	- 임의의 이름 사용 가능(클래스 명 권장)
+						: class	- Beans 클래스 명
+ 						: scope	- Beans 사용 기간을 request 단위로 지정 Hello.HelloDTO 
+	------------------------------------------------------------------------
+	<jsp:useBean id="HelloDTO" class="Hello.HelloDTO" scope="request"></jsp:useBean>
+	--%>
+	<%----------------------------------------------------------------------
+	Beans 속성 지정 방법1	: Beans Property에 * 사용
+						:---------------------------------------------------
+						: name		- <jsp:useBean>의 id
+						: property	- HTML 태그 입력양식 객체 전체
+						:---------------------------------------------------
+	주의사항				: HTML 태그의 name 속성 값은 소문자로 시작!
+						: HTML 태그에서 데이터 입력 없는 경우 null 입력 됨!
+	------------------------------------------------------------------------
+	<jsp:setProperty name="HelloDTO" property="*"/>
+	--%>
+	<%----------------------------------------------------------------------
+	Beans 속성 지정 방법2	: Beans Property에 HTML 태그 name 사용
+						:---------------------------------------------------
+						: name		- <jsp:useBean>의 id
+						: property	- HTML 태그 입력양식 객체 name
+						:---------------------------------------------------
+	주의사항				: HTML 태그의 name 속성 값은 소문자로 시작!
+						: HTML 태그에서 데이터 입력 없는 경우 null 입력 됨!
+						: Property를 각각 지정 해야 함!
+	------------------------------------------------------------------------
+	<jsp:setProperty name="HelloDTO" property="data1"/>
+	<jsp:setProperty name="HelloDTO" property="data2"/>
+	--%>
+	<%----------------------------------------------------------------------
+	Beans 속성 지정 방법3	: Beans 메서드 직접 호출
+						:---------------------------------------------------
+						: Beans 메서드를 각각 직접 호출 해야함!
+	--------------------------------------------------------------------------%>
+<%
+	// HelloDTO.setData1(request.getParameter("data1"));
+%>
+<%--------------------------------------------------------------------------
+[Beans DTO 읽기 및 로직 구현 영역]
+------------------------------------------------------------------------------%>
+<%
+	
+%>
+<body class="Body">
+	<%----------------------------------------------------------------------
+	[HTML Page - FORM 디자인 영역]
+	--------------------------------------------------------------------------%>
+	<form name="form1" action="/HelloJsp/ServletSawon" method="post">
+		<%------------------------------------------------------------------
+			Top 고정 영역
+		----------------------------------------------------------------------%>
+		<div class="Top-Fixed">
+			<%------------------------------------------------------------------
+				타이틀
+			----------------------------------------------------------------------%>
+			<hr  class="Line">
+			<div class="Title">JSP 사원검색(Use JSP/Servlet/ResultSet)</div>
+			<hr  class="Line">
+			<%------------------------------------------------------------------
+				조건 입력필드 & 검색 버튼
+			----------------------------------------------------------------------%>
+			&nbsp;
+			<label class="Label"   for="Age">나이</label>&nbsp;
+			<input class="NumData" type="number" id="Age"	name="age"    value="<%=sAge %>">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<label class="Label"   for="All">성별</label>
+			<input class="RdoData" type="radio"  id="All"	name="gender" value="-1" <%=(sGender.equals("-1")) ? "checked" : "" %>><label class="Label"   for="All">전체</label>
+			<input class="RdoData" type="radio"  id="Man"	name="gender" value="1"  <%=(sGender.equals("1"))  ? "checked" : "" %>><label class="Label"   for="Man">남성</label>
+			<input class="RdoData" type="radio"  id="Woman"	name="gender" value="0"  <%=(sGender.equals("0"))  ? "checked" : "" %>><label class="Label"   for="Woman">여성</label>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<label class="Label"    for="Dept">부서</label>&nbsp;
+			<select class="CmbData" id="Dept" name="dept">
+				<option value="-1" selected>-전 체-</option>
+			<%------------------------------------------------------------------
+				부서정보 콤보박스 동적으로 생성하기(표현식 사용)
+			----------------------------------------------------------------------%>
+			<%
+				for(String dept : this.DeptInfo)
+				{
+					// Java에서 '['를 정규식으로 인식해서 ','로 변경 후 분리
+					oDept = dept.replace("[", ",").replace("]", "").split(","); 
+					
+					sSelected = (sDept.equals(oDept[1]) == true) ? "selected" : "";
+			%>
+					<option value="<%=oDept[1] %>" <%=sSelected %>><%=oDept[0] %></option>
+			<%
+				}
+			%>
+			</select>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input class="Submit" type="submit" id="Submit" value=" SEARCH [ Rows:<%=nRowCount %> ] ">
+			<hr class="Line">
+		</div>
+		<%------------------------------------------------------------------
+			Middle 고정 영역
+		----------------------------------------------------------------------%>
+		<div class="Middle-Fixed">
+			<%------------------------------------------------------------------
+				사원검색 결과 테이블 동적으로 생성하기(스크립트립 사용)
+			----------------------------------------------------------------------%>
+			<table class="Table">
+			<%
+			out.println("<tr class=\"TableHead\">");
+			
+			for(String sHead : this.SawonHead)
+			{
+				out.println(String.format("<th>%s</th>", sHead));
+			}
+			
+			out.println("</tr>");
+			
+			if (ServletSawon.DBMgr != null && ServletSawon.DBMgr.Rs != null)
+			{
+				while(ServletSawon.DBMgr.Rs.next() == true)
+				{
+					sGenderName = ServletSawon.DBMgr.Rs.getString("Gender");
+					sGenderName = (sGenderName.equals("1")) ? "남성" : "여성";
+							
+					out.println("<tr class=\"TableRow\">");
+					out.println(String.format("<td>%d</td>", ServletSawon.DBMgr.Rs.getInt("Sabun")));
+					out.println(String.format("<td>%s</td>", ServletSawon.DBMgr.Rs.getString("Name")));
+					out.println(String.format("<td>%d</td>", ServletSawon.DBMgr.Rs.getInt("Age")));
+					out.println(String.format("<td>%s</td>", sGenderName));
+					out.println(String.format("<td>%s</td>", ServletSawon.DBMgr.Rs.getString("Tel")));
+					out.println(String.format("<td>[%s]</td>", ServletSawon.DBMgr.Rs.getString("Dept")));
+					out.println(String.format("<td>%s</td>", ServletSawon.DBMgr.Rs.getString("DeptName")));
+					out.println(String.format("<td>[%s]</td>", ServletSawon.DBMgr.Rs.getString("StCd")));
+					out.println(String.format("<td>%s</td>", ServletSawon.DBMgr.Rs.getString("StCdName")));
+					out.println(String.format("<td>%s</td>", ServletSawon.DBMgr.Rs.getString("BDate")));
+					out.println(String.format("<td>%s</td>", ServletSawon.DBMgr.Rs.getString("Address")));
+					out.println("</tr>");
+					
+					nRowCount = nRowCount + 1;
+				}
+				
+				ServletSawon.DBMgr.DbDisConnect();
+			}
+			%>
+			</table>
+			<script type="text/javascript">PrintRowCount("Submit", " SEARCH [ Rows:<%=nRowCount %> ] ")</script>
+		</div>
+		<%------------------------------------------------------------------
+			Bottom 고정 영역
+		----------------------------------------------------------------------%>
+		<div class="Bottom-Fixed">
+			<hr class="Line">
+			<div class="Link">
+				<a class="Link" href="../Index.jsp">INDEX 페이지로 돌아가기(Index.jsp)</a>
+				<%
+				out.println(String.format("<span class='RowsData'>&nbsp;< 검색결과 : %d 명 ></span>", nRowCount));
+				%>
+			</div>
+			<hr class="Line">
+		</div>
+	</form>
+	<%----------------------------------------------------------------------
+	[HTML Page - END]
+	--------------------------------------------------------------------------%>
+	<%----------------------------------------------------------------------
+	[HTML Page - 자바스크립트 구현 영역(하단)]
+	[외부 자바스크립트 연결(각각) : <script type="text/javascript" src="Hello.js"></script>]
+	--------------------------------------------------------------------------%>
+	<script type="text/javascript">
+		// -----------------------------------------------------------------
+		// [사용자 함수 및 로직 구현]
+		// -----------------------------------------------------------------
+		
+		// -----------------------------------------------------------------
+	</script>
+	<%------------------------------------------------------------------
+	[JSP 페이지에서 바로 이동(바이패스)]
+	----------------------------------------------------------------------%>
+	<%------------------------------------------------------------------
+	바이패스 방법1	: JSP forward 액션을 사용 한 페이지 이동
+				:-------------------------------------------------------
+				: page	- 이동 할 새로운 페이지 주소
+				: name	- page 쪽에 전달 할 파라미터 명칭
+				: value	- page 쪽에 전달 할 파라미터 데이터
+				:		- page 쪽에서 request.getParameter("name1")로 읽음
+				:-------------------------------------------------------
+				: 이 방법은 기다리지 않고 바로 이동하기 때문에 현재 화면이 표시되지 않음
+				: 브라우저 Url 주소는 현재 페이지로 유지 됨
+	--------------------------------------------------------------------
+	<jsp:forward page="Hello.jsp">
+		<jsp:param name="name1" value='value1'/>
+		<jsp:param name="name2" value='value2'/>
+	</jsp:forward>
+	--%>
+	<%
+	// -----------------------------------------------------------------
+	//	바이패스 방법2	: RequestDispatcher을 사용 한 페이지 이동
+	//				:---------------------------------------------------
+	//				: sUrl	- 이동 할 새로운 페이지 주소
+	//				:		- sUrl 페이지 주소에 GET 파라미터 전달 가능
+	//				:		- sUrl 페이지가 갱신됨 즉,
+	//				:		- sUrl 페이지 주소에 GET 파라미터 유무에 상관없이
+	//				:		- sUrl 페이지 쪽에서 request.getParameter() 사용가능
+	//				:-------------------------------------------------------
+	//				: 이 방법은 기다리지 않고 바로 이동하기 때문에 현재 화면이 표시되지 않음
+	//				: 브라우저 Url 주소는 현재 페이지로 유지 됨
+	// -----------------------------------------------------------------
+	// String sUrl = "Hello.jsp?name1=value1&name2=value2";
+	//
+	// RequestDispatcher dispatcher = request.getRequestDispatcher(sUrl);
+	// dispatcher.forward(request, response);
+	// -----------------------------------------------------------------
+	//	바이패스 방법3	: response.sendRedirect을 사용 한 페이지 이동
+	//				:---------------------------------------------------
+	//				: sUrl	- 이동 할 새로운 페이지 주소
+	//				:		- sUrl 페이지에 GET 파라미터만 전달 가능
+	//				:		- sUrl 페이지 갱신 없음 즉,
+	//				:		- sUrl 페이지 주소에 GET 파라미터 있는 경우만
+	//				:		- sUrl 페이지 쪽에서 request.getParameter() 사용가능
+	//				:-------------------------------------------------------
+	//				: 이 방법은 기다리지 않고 바로 이동하기 때문에 현재 화면이 표시되지 않음
+	//				: 브라우저의 Url 주소는 sUrl 페이지로 변경 됨
+	// -----------------------------------------------------------------
+	//String sUrl = "Hello.jsp?name1=value1&name2=value2";
+	//
+	//response.sendRedirect(sUrl);
+	// -----------------------------------------------------------------
+	%>
+</body>
+</html>

@@ -1,0 +1,154 @@
+@charset "UTF-8";
+/* -----------------------------------------------------------------
+	Top/Middle/Bottom 고정 영역 스타일시트
+   ----------------------------------------------------------------- */
+.Top-Fixed {
+	background-color: #f8f9fa;					/* Top 고정 영역 배경색 */
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);		/* Top 고정 영역 박스 그림자 */
+	height: 61px;									/* Top 고정 영역 넓이/높이 크기 */
+	left: 0; top: 0;								/* Top 고정 영역 좌측/상단 여백 */
+	padding: 0;										/* Top 고정 영역 내부 여백 */
+	position: fixed;								/* Top 고정 영역 고정 시키기 */
+	width: 100%;									/* Top 고정 영역 넓이/높이 크기 */
+}
+
+.Middle-Fixed {
+	height: calc(100vh - (61px + 152px));			/* Middle 고정 영역 높이(전체높이 - Top+Bottom 고정 영역 높이) */
+	margin-top: 61px; margin-bottom: 152px;			/* Middle 고정 영역 외부 상단/하단 여백 */
+	overflow-y: auto;								/* Middle 고정 영역 내부 넘침 자동(스크롤) */
+}
+
+.Bottom-Fixed {
+	background-color: #f8f9fa;					/* Bottom 고정 영역 배경색 */
+	bottom: 0; left: 0;								/* Bottom 고정 영역 하단/좌측 여백 */
+	box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);	/* Bottom 고정 영역 박스 그림자 */
+	height: 152px;									/* Bottom 고정 영역 높이 크기 */
+	padding: 0;										/* Bottom 고정 영역 내부 여백 */
+	position: fixed;								/* Bottom 고정 영역 고정 시키기 */
+	width: 100%;									/* Bottom 고정 영역 넓이 크기 */
+}
+/* -----------------------------------------------------------------
+	HTML Page 스타일시트
+   ----------------------------------------------------------------- */
+.Body {
+	margin: 0 10px;									/* body 외부 여백 위/아래:0px 좌/우:10px */
+	padding: 0;										/* body 내부 여백 모두 0px */
+}
+
+.Line {
+	border: 1px solid black;
+	box-shadow: 5px 5px 10px gray;
+}
+				  
+.Title {
+	color: black;
+	font-size: 24px; font-weight: bold;
+	text-align: center; text-shadow: 5px 5px 10px darkgray;
+}
+				  
+.Label {
+	color: teal;
+	font-size: 16px; font-weight: bold;
+}
+				  
+.NumData {
+	font-size: 16px; font-weight: bold;
+	height: 25px;
+	width: 60px;
+}
+				  
+.RdoData {
+	accent-color: black;
+	height: 20px;
+	vertical-align: top;
+	width: 30px;
+}
+				  
+.CmbData {
+	font-size: 16px; font-weight: bold;
+	height: 30px;
+	text-align: center;
+	width: 90px;
+}
+				  
+.Table {
+	border-collapse: collapse;
+	margin: 0;
+	width: 100%;
+}
+
+.TableHead {
+	border-bottom: 1px solid darkgray;
+	color: maroon;
+	font-size: 20px; font-weight: bold;
+	height: 40px;
+	text-shadow: 5px 5px 10px darkgray;
+}
+				  
+.TableRow {
+	border-bottom: 1px solid darkgray;
+	color: black;
+	font-size: 18px; font-weight: bold;
+	height: 35px;
+	text-align: center;
+}
+				  
+.TableCol {
+	border-bottom: 1px solid darkgray;
+	color: maroon;
+	font-size: 16px; font-weight: bold;
+	height: 50px;
+	text-align: center;
+}
+				  
+.MovePage {
+	height: 30px;
+	text-align: center;
+	vertical-align: bottom;
+}
+				  
+.LinkPage {
+	color: darkorange;
+	font-size: 16px; font-weight: bold;
+	text-align: center; text-decoration: none; text-shadow: 5px 5px 10px darkgray;
+}
+				  
+.LinkPageCurrent {
+	color: gray;
+	font-size: 16px; font-weight: bold;
+	text-align: center; text-decoration: none; text-shadow: 5px 5px 10px darkgray;
+}
+				  
+.Move {
+	height: 30px;
+	font-size: 14px; font-weight: bold;
+	text-align: center;
+	vertical-align: top;
+}
+				  
+.MoveActive {
+	color: blue;
+	text-decoration: none; text-shadow: 5px 5px 10px darkgray;
+}
+				  
+.MoveDeactive {
+	color: gray;
+	text-decoration: none;
+}
+				  
+.Submit {
+	background-color: lightgray;
+	border: 30px;
+	box-shadow: 5px 5px 10px gray;
+	cursor: pointer;
+	font-size: 16px; font-weight: bold;
+	height: 30px;
+	width: 150px;
+}
+				  
+.Link {
+	color: darkorange;
+	font-size: 16px; font-weight: bold;
+	text-align: center; text-decoration: none; text-shadow: 5px 5px 10px darkgray;
+}
+/* ----------------------------------------------------------------- */

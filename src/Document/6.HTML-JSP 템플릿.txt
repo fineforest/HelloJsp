@@ -1,0 +1,467 @@
+════════════════════════════════════════════════════════════════════════════════════
+ <<<HTML-JSP 템플릿>>>
+	--------------------------------------------------------------------------------
+	 목 차
+	--------------------------------------------------------------------------------
+	 [1] 이클립스 HTML-Page 소스 코드 템플릿(권장!)
+	 [2] 이클립스 JSP-Page 소스 코드 템플릿(권장!)
+════════════════════════════════════════════════════════════════════════════════════
+
+════════════════════════════════════════════════════════════════════════════════════
+ [1] 이클립스 HTML-Page 소스 코드 템플릿(권장!)
+════════════════════════════════════════════════════════════════════════════════════
+0. 이클립스 설치버전
+	- 파일 : eclipse-jee-2023-09-R-win32-x86_64.zip
+	
+1. 메뉴
+	- 이클립스 : Window/Preferences
+	
+2. 기능
+	- 이클립스에서 HTML Web 페이지를 생성하는 경우 자동으로 생성되는 기본 소스 등록
+
+3. 내용
+	- HTML 페이지의 소스 코드 템플릿을 아래의 원하는 내용으로 편집
+	
+4. HTML Web 소스 코드 템플릿
+	- 메뉴 : Preferences/Web/HTML files/Editor/Templates
+	- New HTML File (5) : 편집
+	
+	————————————————————————————————————————————————————————————————
+	 HTML Template 1 : 원본
+	————————————————————————————————————————————————————————————————
+	<!DOCTYPE html>
+	<html>
+		<head>
+			<meta charset="${encoding}">
+			<title>Insert title here</title>
+	</head>
+	<body>
+		${cursor}
+	</body>
+	</html>
+	
+	————————————————————————————————————————————————————————————————
+	 HTML Template 2 : 원본 + 한글 + meta
+	————————————————————————————————————————————————————————————————
+	<!DOCTYPE html>
+	<html lang="ko">
+	<head>
+		<%--<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">--%>
+		<meta charset="UTF-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+		<meta name="Description" content="검색 엔진을 위해 Web 페이지에 대한 설명을 명시"/>
+		<meta name="keywords" content="검색 엔진을 위해 Web 페이지와 관련된 키워드 목록을 콤마로 구분해서 명시"/>
+		<meta name="Author" content="문서의 저자를 명시"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<title>Insert title here</title>
+	</head>
+	<body>
+		Hello...HTML!<br>
+		안녕하세요...HTML!<br>
+	</body>
+	</html>
+	
+════════════════════════════════════════════════════════════════════════════════════
+ [2] 이클립스 JSP-Page 소스 코드 템플릿(권장!)
+════════════════════════════════════════════════════════════════════════════════════
+0. 이클립스 설치버전
+	- 파일 : eclipse-jee-2023-09-R-win32-x86_64.zip
+	
+1. 메뉴
+	- 이클립스 : Window/Preferences
+	
+2. 기능
+	- 이클립스에서 JSP Web 페이지를 생성하는 경우 자동으로 생성되는 기본 소스 등록
+
+3. 내용
+	- JSP 페이지의 소스 코드 템플릿을 아래의 원하는 내용으로 편집
+	
+4. JSP Web 소스 코드 템플릿
+	- 메뉴 : Preferences/Web/JSP Files/Editor/Templates
+	- New JSP File (html 5) : 편집
+	
+	————————————————————————————————————————————————————————————————
+	 JSP Template 1 : 원본
+	————————————————————————————————————————————————————————————————
+	<!DOCTYPE html>
+	<html>
+		<head>
+			<meta charset="${encoding}">
+			<title>Insert title here</title>
+	</head>
+	<body>
+		${cursor}
+	</body>
+	</html>
+	
+	————————————————————————————————————————————————————————————————
+	 JSP Template 2 : 원본 + 한글 + meta
+	————————————————————————————————————————————————————————————————
+	<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+	<% request.setCharacterEncoding("UTF-8");%>
+	<!DOCTYPE html>
+	<html lang="ko">
+	<head>
+		<%--<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">--%>
+		<meta charset="UTF-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+		<meta name="Description" content="검색 엔진을 위해 Web 페이지에 대한 설명을 명시"/>
+		<meta name="keywords" content="검색 엔진을 위해 Web 페이지와 관련된 키워드 목록을 콤마로 구분해서 명시"/>
+		<meta name="Author" content="문서의 저자를 명시"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<hr>
+		<%="Hello...JSP!"%><br>
+		<%="안녕하세요...JSP!"%><br>
+		<hr>
+	</body>
+	</html>
+	
+	————————————————————————————————————————————————————————————————
+	 JSP Template 3 : 원본 + 한글 + meta + 검색조건
+	————————————————————————————————————————————————————————————————
+	<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+	<% request.setCharacterEncoding("UTF-8");%>
+	<!DOCTYPE html>
+	<html lang="ko">
+	<head>
+		<%--<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">--%>
+		<meta charset="UTF-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+		<meta name="Description" content="검색 엔진을 위해 Web 페이지에 대한 설명을 명시"/>
+		<meta name="keywords" content="검색 엔진을 위해 Web 페이지와 관련된 키워드 목록을 콤마로 구분해서 명시"/>
+		<meta name="Author" content="문서의 저자를 명시"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<form name="Form1" action="Hello.jsp" method="post">
+			<hr>
+			&nbsp;성명 : <input type="text" name="txtName" value="<%=request.getParameter("txtName")%>">
+			&nbsp;나이 : <input type="text" name="txtAge" value="<%=request.getParameter("txtAge")%>">
+			&nbsp;성별 : <input type="text" name="txtGender" value="<%=request.getParameter("txtGender")%>">
+			&nbsp;<input type="submit" value="  GO  ">
+			<hr>
+		</form>
+	</body>
+	</html>
+	
+	————————————————————————————————————————————————————————————————
+	 JSP Template 4 : 원본 + 한글 + meta + 검색조건 + 샘플코드1(CSS/JS 포함)
+	————————————————————————————————————————————————————————————————
+	<%@page import="java.util.Date"%>
+	<%@page import="java.text.SimpleDateFormat"%>
+	<%@page import="org.apache.naming.java.javaURLContextFactory"%>
+	<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+	<% request.setCharacterEncoding("UTF-8");%>
+	<!DOCTYPE html>
+	<html lang="ko">
+	<head>
+		<%--<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">--%>
+		<meta charset="UTF-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+		<meta name="Description" content="검색 엔진을 위해 Web 페이지에 대한 설명을 명시"/>
+		<meta name="keywords" content="검색 엔진을 위해 Web 페이지와 관련된 키워드 목록을 콤마로 구분해서 명시"/>
+		<meta name="Author" content="문서의 저자를 명시"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<title>Insert title here</title>
+		
+		<style type="text/css">
+			label, input {
+				font-size: 16px;
+				font-weight: bold;
+			}
+			
+			.cond {
+				color: white;
+				background-color: teal;
+				width: 70px;
+			}
+		</style>
+		<script>
+			function PrintDate(Date)
+			{
+				alert('현재 날짜/시간은 : ' + Date);
+			}
+		</script>
+	</head>
+	<body>
+		<form name="Form1" action="Hello.jsp" method="post">
+			&nbsp;<label for="Name">  성명 </label><input type="text" class="cond" id="Name"   name="txtName"   value="<%=request.getParameter("txtName")%>">
+			&nbsp;<label for="Age">   나이 </label><input type="text" class="cond" id="Age"    name="txtAge"    value="<%=request.getParameter("txtAge")%>">
+			&nbsp;<label for="Gender">성별 </label><input type="text" class="cond" id="Gender" name="txtGender" value="<%=request.getParameter("txtGender")%>">
+			&nbsp;<input type="submit" value=" Submit ">
+			<hr>
+			<%
+				SimpleDateFormat Sdf = null;
+				String Date  = "20231231 121212";
+				
+				Date CurDate = new Date();
+				String Date1 = String.format("%tF %tT 입니다.", CurDate, CurDate);
+				
+				Sdf = new SimpleDateFormat("yyyy년 MM월 dd일 hh시 mm분 ss초 입니다.");
+				String Date2 = Sdf.format(CurDate);
+				
+				Sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss 입니다.");
+				String Date3 = Sdf.format(new SimpleDateFormat("yyyyMMdd hhmmss").parse(Date));
+			%>
+			<ul>
+				<li>현재 날짜/시간은 : <%=Date1 %></li>
+				<li>현재 날짜/시간은 : <%=Date2 %></li>
+				<li>특정 날짜/시간은 : <%=Date3 %></li>
+			</ul>
+			<hr>
+		</form>
+	</body>
+	</html>
+	
+	————————————————————————————————————————————————————————————————
+	 JSP Template 5 : 원본 + 한글 + meta + 검색조건 + 샘플코드2(CSS/JS 포함)
+	————————————————————————————————————————————————————————————————
+	<%@page import="java.util.Date"%>
+	<%@page import="java.text.SimpleDateFormat"%>
+	<%@page import="org.apache.naming.java.javaURLContextFactory"%>
+	<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+	<% request.setCharacterEncoding("UTF-8");%>
+	<!DOCTYPE html>
+	<html lang="ko">
+	<head>
+		<%--<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">--%>
+		<meta charset="UTF-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+		<meta name="Description" content="검색 엔진을 위해 Web 페이지에 대한 설명을 명시"/>
+		<meta name="keywords" content="검색 엔진을 위해 Web 페이지와 관련된 키워드 목록을 콤마로 구분해서 명시"/>
+		<meta name="Author" content="문서의 저자를 명시"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<title>Insert title here</title>
+		
+		<style type="text/css">
+			label, input {
+				font-size: 16px;
+				font-weight: bold;
+			}
+			
+			p {
+				color: blue;
+				font-size: 20px;
+				font-weight: bold;
+			}
+			
+			li {
+				font-size: 16px;
+				font-weight: bold;
+			}
+			
+			.cond {
+				color: white;
+				background-color: teal;
+				width: 70px;
+			}
+		</style>
+		<script>
+			function PrintDate(Date)
+			{
+				alert('현재 날짜/시간은 : ' + Date);
+			}
+		</script>
+	</head>
+	<body>
+		<form name="Form1" action="Hello.jsp" method="post">
+			&nbsp;<label for="Name">  성명 </label><input type="text" class="cond" id="Name"   name="txtName"   value="<%=request.getParameter("txtName")%>">
+			&nbsp;<label for="Age">   나이 </label><input type="text" class="cond" id="Age"    name="txtAge"    value="<%=request.getParameter("txtAge")%>">
+			&nbsp;<label for="Gender">성별 </label><input type="text" class="cond" id="Gender" name="txtGender" value="<%=request.getParameter("txtGender")%>">
+			&nbsp;<input type="submit" value=" Submit ">
+			<hr>
+			<ul>
+				<li><p>입력내용</p>
+					<ol>
+						<li>성명 : <%=request.getParameter("txtName")%></li>
+						<li>나이 : <%=request.getParameter("txtAge")%></li>
+						<li>성별 : <%=request.getParameter("txtGender")%></li>
+					</ol>
+				</li>
+				<hr>
+				<%
+					SimpleDateFormat Sdf = null;
+					String Date  = "20231231 121212";
+					
+					Date CurDate = new Date();
+					String Date1 = String.format("%tF %tT 입니다.", CurDate, CurDate);
+					
+					Sdf = new SimpleDateFormat("yyyy년 MM월 dd일 hh시 mm분 ss초 입니다.");
+					String Date2 = Sdf.format(CurDate);
+					
+					Sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss 입니다.");
+					String Date3 = Sdf.format(new SimpleDateFormat("yyyyMMdd hhmmss").parse(Date));
+				%>
+				<li><p>날짜/시간 예시</p>
+					<ol>
+						<li>현재 날짜/시간은 : <%=Date1 %></li>
+						<li>현재 날짜/시간은 : <%=Date2 %></li>
+						<li>특정 날짜/시간은 : <%=Date3 %></li>
+						<li>
+							<input type="button" value=" 현재 날짜/시간 출력 " onclick="PrintDate('<%=Date1 %>')">
+						</li>
+					</ol>
+				</li>
+			</ul>
+			<hr>
+		</form>
+	</body>
+	</html>
+	
+	————————————————————————————————————————————————————————————————
+	 JSP Template 6 : 원본 + 한글 + meta + 검색조건 + 샘플코드3(CSS/JS 포함)
+	————————————————————————————————————————————————————————————————
+	<%@page import="java.util.Date"%>
+	<%@page import="java.text.SimpleDateFormat"%>
+	<%@page import="org.apache.naming.java.javaURLContextFactory"%>
+	<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+	<% request.setCharacterEncoding("UTF-8");%>
+	<!DOCTYPE html>
+	<html lang="ko">
+	<head>
+		<%--<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">--%>
+		<meta charset="UTF-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+		<meta name="Description" content="검색 엔진을 위해 Web 페이지에 대한 설명을 명시"/>
+		<meta name="keywords" content="검색 엔진을 위해 Web 페이지와 관련된 키워드 목록을 콤마로 구분해서 명시"/>
+		<meta name="Author" content="문서의 저자를 명시"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<title>Insert title here</title>
+		
+		<style type="text/css">
+			label, input, select {
+				font-size: 16px;
+				font-weight: bold;
+			}
+			
+			p {
+				color: blue;
+				font-size: 20px;
+				font-weight: bold;
+			}
+			
+			li {
+				font-size: 16px;
+				font-weight: bold;
+			}
+			
+			.txtcond {
+				width: 70px;
+			}
+			
+			.rdocond {
+				width: 15px;
+			}
+			
+			.cmbcond {
+				width: 100px;
+			}
+		</style>
+		<script>
+		function PrintDate(Date)
+		{
+			alert('현재 날짜/시간은 : ' + Date);
+		}
+		</script>
+	</head>
+	<body>
+		<form name="Form1" action="Hello.jsp" method="post">
+			<hr>
+			&nbsp;<label for="Age">나이</label>
+				<input type="text" class="txtcond" id="Age" name="txtAge" value="<%=request.getParameter("txtAge") %>">
+			&nbsp;<label for="GenderMan">성별</label>
+			<%
+				if (request.getParameter("rdoGender").equals("1"))
+				{
+			%>
+				<input type="radio" class="rdocond" id="GenderMan"   name="rdoGender" value="1" checked>남성
+				<input type="radio" class="rdocond" id="GenderWoman" name="rdoGender" value="0">여성
+			<%
+				}
+				else
+				{
+			%>
+				<input type="radio" class="rdocond" id="GenderMan"   name="rdoGender" value="1">남성
+				<input type="radio" class="rdocond" id="GenderWoman" name="rdoGender" value="0" checked>여성
+			<%
+				}
+			%>
+			&nbsp;<label for="Dept">부서</label>
+				<select class="cmbcond" id="Dept" name="cmbDept">
+			<%
+				if (request.getParameter("cmbDept").equals("01"))
+				{
+			%>
+					<option value="01" selected>영업부</option>
+					<option value="02">회계부</option>
+					<option value="03">구매부</option>
+			<%
+				}
+				else if (request.getParameter("cmbDept").equals("02"))
+				{
+			%>
+					<option value="01">영업부</option>
+					<option value="02" selected>회계부</option>
+					<option value="03">구매부</option>
+			<%
+				}
+				else
+				{
+			%>
+					<option value="01">영업부</option>
+					<option value="02">회계부</option>
+					<option value="03" selected>구매부</option>
+			<%
+				}
+			%>
+				</select>
+			&nbsp;<input type="submit" value=" Submit ">
+			<hr>
+			<ul>
+				<li><p>입력내용</p>
+					<ol>
+						<li>나이 : <%=request.getParameter("txtAge") %></li>
+						<li>성별 : <%=request.getParameter("rdoGender") %></li>
+						<li>부서 : <%=request.getParameter("cmbDept") %></li>
+					</ol>
+				</li>
+				<%
+					SimpleDateFormat Sdf = null;
+					String Date  = "20231231 121212";
+					
+					Date CurDate = new Date();
+					String Date1 = String.format("%tF %tT 입니다.", CurDate, CurDate);
+					
+					Sdf = new SimpleDateFormat("yyyy년 MM월 dd일 hh시 mm분 ss초 입니다.");
+					String Date2 = Sdf.format(CurDate);
+					
+					Sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss 입니다.");
+					String Date3 = Sdf.format(new SimpleDateFormat("yyyyMMdd hhmmss").parse(Date));
+				%>
+				<li><p>날짜/시간 예시</p>
+					<ol>
+						<li>현재 날짜/시간은 : <%=Date1 %></li>
+						<li>현재 날짜/시간은 : <%=Date2 %></li>
+						<li>특정 날짜/시간은 : <%=Date3 %></li>
+						<li>
+							<input type="button" value=" 현재 날짜/시간 출력 " onclick="PrintDate('<%=Date1 %>')">
+						</li>
+					</ol>
+				</li>
+			</ul>
+			<hr>
+		</form>
+	</body>
+	</html>
+	
+════════════════════════════════════════════════════════════════════════════════════

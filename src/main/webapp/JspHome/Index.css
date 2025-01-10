@@ -1,0 +1,53 @@
+@charset "UTF-8";
+/* -----------------------------------------------------------------
+	HTML Page 스타일시트
+   ----------------------------------------------------------------- */
+.Body {
+	left: 50%; top: 50%;							/* body 좌측, 상단 위치 */
+	margin: 0;										/* body 외부 여백 0px */
+	padding: 0;										/* body 내부 여백 0px */
+	position: absolute;								/* body 위치 속성 */
+	transform: translate(-50%, -50%);				/* body x, y 만큼 이동 */
+	width: 550px;									/* body 넓이 */
+}
+
+.Line {
+	background-color: black;
+	border: 10px;
+	box-shadow: 5px 5px 10px gray;
+	height: 3px;
+}
+
+.Title {
+	color: blue;
+	font-size: 45px; font-weight: bold;
+	text-align: center; text-shadow: 5px 5px 10px darkgray;
+}
+
+.Menu1 {
+	font-size: 24px; font-weight: bold;
+	height: 30px;
+	text-shadow: 5px 5px 10px darkgray;
+}
+
+.Menu2 {
+	font-size: 24px; font-weight: bold;
+	height: 150px;
+	text-shadow: 5px 5px 10px darkgray;
+}
+
+.Menu3 {
+	font-size: 24px; font-weight: bold;
+	height: 95px;
+	text-shadow: 5px 5px 10px darkgray;
+}
+
+.MenuItem {
+	height: 60px;
+}
+
+.Link {
+	color: teal;
+	text-decoration: none;
+}
+/* ----------------------------------------------------------------- */

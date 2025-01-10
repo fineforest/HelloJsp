@@ -1,0 +1,189 @@
+@charset "UTF-8";
+/* -----------------------------------------------------------------
+	Top/Middle/Bottom 고정 영역 스타일시트
+   ----------------------------------------------------------------- */
+.Top-Fixed {
+	background-color: #f8f9fa;					/* Top 고정 영역 배경색 */
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);		/* Top 고정 영역 박스 그림자 */
+	height: 110px;									/* Top 고정 영역 넓이/높이 크기 */
+	left: 0; top: 0;								/* Top 고정 영역 좌측/상단 여백 */
+	padding: 0;										/* Top 고정 영역 내부 여백 */
+	position: fixed;								/* Top 고정 영역 고정 시키기 */
+	width: 100%;									/* Top 고정 영역 넓이/높이 크기 */
+}
+
+.Middle-Fixed {
+	height: calc(100vh - (110px + 60px));			/* Middle 고정 영역 높이(전체높이 - Top+Bottom 고정 영역 높이) */
+	margin-top: 110px; margin-bottom: 60px;			/* Middle 고정 영역 외부 상단/하단 여백 */
+	overflow-y: auto;								/* Middle 고정 영역 내부 넘침 자동(스크롤) */
+}
+
+.Bottom-Fixed {
+	background-color: #f8f9fa;					/* Bottom 고정 영역 배경색 */
+	bottom: 0; left: 0;								/* Bottom 고정 영역 하단/좌측 여백 */
+	box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);	/* Bottom 고정 영역 박스 그림자 */
+	height: 60px;									/* Bottom 고정 영역 높이 크기 */
+	padding: 0;										/* Bottom 고정 영역 내부 여백 */
+	position: fixed;								/* Bottom 고정 영역 고정 시키기 */
+	width: 100%;									/* Bottom 고정 영역 넓이 크기 */
+}
+/* -----------------------------------------------------------------
+	HTML Page 스타일시트
+   ----------------------------------------------------------------- */
+.Body {
+	margin: 0 10px;									/* body 외부 여백 위/아래:0px 좌/우:10px */
+	padding: 0;										/* body 내부 여백 모두 0px */
+}
+
+.Line {
+	border: 1px solid black;
+	box-shadow: 5px 5px 10px gray;
+}
+
+.Title {
+	color: black;
+	font-size: 24px; font-weight: bold;
+	text-align: center; text-shadow: 5px 5px 10px darkgray;
+}
+
+.Label {
+	color: teal;
+	cursor: pointer;
+	font-size: 16px; font-weight: bold;
+}
+
+.NumData {
+	font-size: 16px; font-weight: bold;
+	height: 25px;
+	width: 100px;
+}
+
+.RdoData {
+	accent-color: black;
+	cursor: pointer1;
+	height: 20px;
+	vertical-align: top;
+	width: 30px;
+}
+
+.CmbData {
+	cursor: pointer;
+	font-size: 16px; font-weight: bold;
+	height: 30px;
+	text-align: center;
+	width: 100px;
+}
+
+.RowsData {
+	color: blue;
+	font-size: 16px; font-weight: bold;
+}
+
+.Submit {
+	background-color: lightgray;
+	border: 3px;
+	box-shadow: 5px 5px 10px gray;
+	cursor: pointer;
+	font-size: 16px; font-weight: bold;
+	height: 30px;
+	width: 220px;
+}
+
+.UpdateLink {
+	font-size: 15px; font-weight: bold;
+	text-align: center; text-decoration: none; text-shadow: 5px 5px 10px darkgray;
+}
+
+.DeleteBtn {
+	background-color: lightgray;
+	border: 0;
+	box-shadow: 5px 5px 10px gray;
+	color: black;
+	font-size: 15px; font-weight: bold;
+	height: 24px;
+	width: 50px;
+}
+
+.UpdateLink:hover,
+.UpdateLink:focus,
+.DeleteBtn:hover,
+.DeleteBtn:focus {
+	color: teal;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.Link {
+	color: darkorange;
+	font-size: 16px; font-weight: bold;
+	text-align: center; text-decoration: none; text-shadow: 5px 5px 10px darkgray;
+}
+
+.Table {
+	border-collapse: collapse;
+	margin: 0;
+	width: 100%;
+}
+
+.TableHead {
+	border-bottom: 1px solid darkgray;
+	color: maroon;
+	font-size: 20px; font-weight: bold;
+	height: 50px;
+	text-shadow: 5px 5px 10px darkgray;
+}
+
+.TableRow {
+	border-bottom: 1px solid darkgray;
+	color: black;
+	font-size: 18px; font-weight: bold;
+	height: 35px;
+	text-align: center;
+}
+/* -----------------------------------------------------------------
+	Modal 창 스타일시트
+   ----------------------------------------------------------------- */
+.Modal-Frame {
+	background-color: rgba(0,0,0,0.3);			/* 배경 흐릿하게 처리 */
+	display: none;									/* 기본적으로 숨김 */
+    height: 100%;									/* 브라우저 전체 높이 */
+	left: 0; top: 0;								/* 모달창 프레임 좌측, 상단 위치 */
+	overflow: auto;									/* 모달창이 넘치면 내부에서 스크롤 */
+	position: fixed;								/* 모달창 프레임을 고정 : 부모창 disabled */
+	width: 100%;									/* 모달창 프레임을 브라우저 폭으로 */
+	z-index: 1;										/* 모달창 프레임을 위로 */
+}
+
+.Modal-Content {
+	background-color: #fefefe;					/* 모달창 배경색 */
+	border: 10px solid #555;						/* 모달창 테두리 스타일 */
+	height: 450px;									/* 모달창 높이 */
+	left: 50%; top: 50%;							/* 모달창 좌측/상단 위치 */
+	position: absolute;								/* 모달창 위치 속성 */
+	transform: translate(-50%, -50%);				/* 모달창 x, y 만큼 이동 */
+	width: 700px;									/* 모달창 넓이 */
+}
+
+.Modal-Window {
+	border: none;									/* 모달창 페이지(iframe) 테두리 */
+	height: 100%;									/* 모달창 페이지(iframe) 높이를 Modal-Content 높이로 */
+	width: 100%;									/* 모달창 페이지(iframe) 넓이를 Modal-Content 넓이로 */
+}
+
+.Modal-Close {
+	color: #aaa;									/* 모달창 닫기 버튼 색상 */
+    float: right;									/* 모달창 닫기 버튼 위치 정렬을 오른쪽 으로 */
+	font-size: 30px; font-weight: bold;				/* 모달창 닫기 버튼 폰트, 폰트두께 */
+}
+
+.Modal-Close:hover,
+.Modal-Close:focus {
+	color: black;									/* 모달창 닫기 버튼 마우스 호버 색상 */
+	cursor: pointer;								/* 모달창 닫기 버튼 마우스 호버 포인트 */
+	text-decoration: none;							/* 모달창 닫기 버튼 텍스트 꾸미기 없음 */
+}
+      
+.Modal-Parent-Background {
+	filter: blur(5px);								/* 모달 창 아래 부모 배경 흐리게 처리 */
+}
+/* ----------------------------------------------------------------- */

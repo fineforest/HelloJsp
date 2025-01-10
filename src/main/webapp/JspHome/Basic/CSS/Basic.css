@@ -1,0 +1,40 @@
+@charset "UTF-8";
+/* -----------------------------------------------------------------
+	HTML Page 스타일시트
+   ----------------------------------------------------------------- */
+.Body {
+	padding: 30px;
+}
+
+.Line {
+	border: 1px solid black;
+	box-shadow: 5px 5px 10px gray;
+}
+
+.Title {
+	color: black;
+	font-size: 24px; font-weight: bold;
+	text-align: center; text-shadow: 5px 5px 10px darkgray;
+}
+
+.Data {
+	font-size: 16px; font-weight: bold;
+	width: 200px;
+}
+
+.Subject {
+	color: blue;
+	font-size: 20px; font-weight: bold;
+	text-shadow: 5px 5px 10px darkgray;
+}
+
+.Content {
+	color: black;
+	font-size: 16px; font-weight: bold;
+	margin: 15px;
+}
+
+.Submit {
+	font-size: 16px; font-weight: bold;
+}
+/* ----------------------------------------------------------------- */

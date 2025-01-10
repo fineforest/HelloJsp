@@ -1,0 +1,112 @@
+@charset "UTF-8";
+/* -----------------------------------------------------------------
+	HTML Page 스타일시트
+   ----------------------------------------------------------------- */
+.Body {
+	padding: 30px;
+}
+
+.Line {
+	border: 1px solid black;
+	box-shadow: 5px 5px 10px gray;
+}
+
+.Title {
+	color: black;
+	font-size: 24px; font-weight: bold;
+	text-align: center; text-shadow: 5px 5px 10px darkgray;
+}
+
+.NBoard {
+	background-color: white;
+	margin: auto;
+	width: 90%;
+}
+
+.NBoard_Table {
+	border-collapse: collapse;
+	margin: 0;
+	width: 100%;
+}
+
+.NBoard_Title {
+	border-bottom: 1px solid darkgray;
+	color: teal;
+	font-size: 12px; font-weight: bold;
+	height: 50px;
+}
+
+.NBoard_Subject {
+	border-bottom: 1px solid darkgray;
+	color: navy;
+	height: 70px;
+	font-size: 25px; font-weight: bold;
+	text-shadow: 5px 5px 10px darkgray;
+}
+
+.NBoard_Content {
+	height: 100px;
+	line-height:35px;
+	vertical-align: top;
+}
+
+.NBoard_Content_Col {
+	color: infotext;
+	font-family: Serif; font-size: 20px; font-weight: bold;
+	padding: 20px;
+}
+
+.NBoard_Image {
+	border-bottom: 1px solid darkgray;
+	height: 300px;
+}
+
+.NBoard_Col1 {
+	text-align: left;
+	vertical-align: bottom;
+}
+
+.NBoard_Col2 {
+	text-align: right;
+	vertical-align: bottom;
+}
+
+.Image {
+	border: 1px solid darkgray;
+	box-shadow: 5px 5px 10px gray;
+	height: auto;
+	opacity: 100%;
+	padding:3px;
+	width: auto;
+}
+
+.Image_Col {
+	padding: 20px;
+}
+
+.Move {
+	height: 40px;
+	font-size: 14px; font-weight: bold;
+	text-align: center;
+	vertical-align: bottom;
+}
+
+.MoveActive {
+	color: blue;
+	height: 35px;
+	text-decoration: none; text-shadow: 5px 5px 10px darkgray;
+	
+}
+
+.MoveDeactive {
+	color: gray;
+	height: 35px;
+	text-decoration: none;
+}
+
+.Link {
+	color: darkorange;
+	font-size: 16px; font-weight: bold;
+	text-align: center; text-decoration: none; text-shadow: 5px 5px 10px darkgray;
+}
+/* ----------------------------------------------------------------- */
